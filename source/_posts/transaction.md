@@ -122,11 +122,11 @@ public void saveInner(Entity entity) {
 public void testSave() {
     // 模拟从容器获取Service
     // 不能直接调用同个类的方法，需要通过注入的bean去调用，这样才受spring的控制
-    EntityService entityService =  SpringContextHolder.getBean(EntityService.class);
+    EntityService entityService =  SpringContextUtil.getBean(EntityService.class);
 
     Entity outter1 = new Entity();
     outter1.setName("outter1");
-    violationService.saveOutter(outter1);
+    entityService.saveOutter(outter1);
 
     for (int i = 1; i <= 3; i++) {
         Entity inner = new Entity();
