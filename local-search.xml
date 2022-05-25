@@ -4,6 +4,19 @@
   
   
   <entry>
+    <title>JavaScript 判断字符串是否 JSON 格式</title>
+    <link href="/2022/05/24/jsIsJson/"/>
+    <url>/2022/05/24/jsIsJson/</url>
+    
+    <content type="html"><![CDATA[<p>有用户反馈，页面上的数据不显示，查看后台数据，数据正常，但页面上的数据无法正常显示。打开控制台，看到有报错信息，看代码逻辑应该是处理json时报错了，仔细查看，发现领导写出了这样的代码：</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">&lt;div v-<span class="hljs-keyword">if</span>=<span class="hljs-string">&quot;data.content &amp;&amp; data.content.indexOf(&#x27;[&#x27;) !== -1&quot;</span>&gt;<br></code></pre></td></tr></table></figure><p>判断json格式居然是根据有无方括号来判断的？？？</p><p>人都麻了，这里贴一下判断字符串是否json格式的代码：</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-title function_">isJSON</span>(<span class="hljs-params">str</span>) &#123;<br>    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> str == <span class="hljs-string">&#x27;string&#x27;</span>) &#123;<br>        <span class="hljs-keyword">try</span> &#123;<br>            <span class="hljs-keyword">let</span> obj = <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">parse</span>(str);<br>            <span class="hljs-keyword">return</span> !!(<span class="hljs-keyword">typeof</span> obj == <span class="hljs-string">&#x27;object&#x27;</span> &amp;&amp; obj);<br>        &#125; <span class="hljs-keyword">catch</span> (e) &#123;<br>            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(e);<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>&#125;<br></code></pre></td></tr></table></figure><p>哪怕是领导写的代码也要谨慎使用，谨记！！！</p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>PROPAGATION_NESTED 和 PROPAGATION_REQUIRES_NEW 的使用</title>
     <link href="/2022/05/23/transaction/"/>
     <url>/2022/05/23/transaction/</url>
