@@ -41,7 +41,7 @@ jstack -l 18688 > c:/temp/19688stack.txt
 在刚刚的txt文件搜索十六进制的TID
 
 
-    "pulsar-timer-28-1" #50 prio=5 os_prio=0 tid=0x0000000029be0800 **nid=0x89a0** runnable [0x000000002e4ee000]    java.lang.Thread.State: RUNNABLE
+    "XXXX-timer-28-1" #50 prio=5 os_prio=0 tid=0x0000000029be0800 **nid=0x89a0** runnable [0x000000002e4ee000]    java.lang.Thread.State: RUNNABLE
     at java.lang.Thread.sleep(Native Method)
     at io.netty.util.HashedWheelTimer$Worker.waitForNextTick(HashedWheelTimer.java:567)
     at io.netty.util.HashedWheelTimer$Worker.run(HashedWheelTimer.java:466)
@@ -49,6 +49,6 @@ jstack -l 18688 > c:/temp/19688stack.txt
     at java.lang.Thread.run(Thread.java:748)
 
 
-可以看到nid=0x89a0就是高占用的地方，这个线程是pulsar-timer-28-1，它是pulsar启动的线程，pulsar依赖于netty，所以还能看到netty的类。
+可以看到nid=0x89a0就是高占用的地方，这个线程是XXXX-timer-28-1，它是一个MQ（这里以XXXX表示）启动的线程，这个MQ依赖于netty，所以还能看到netty的类。
 
-pulsar在项目启动后一直处于运行状态，占用一个线程，而我的处理器是八核十六线程，pulsar约占10%。至此，项目启动后造成10%占用的元凶就找到了。
+MQ在项目启动后一直处于运行状态，占用一个线程，而我的处理器是八核十六线程，MQ约占10%。至此，项目启动后造成10%占用的元凶就找到了。
