@@ -25,7 +25,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/images/2022-5-26.png">
 <meta property="article:published_time" content="2022-05-25T08:27:27.000Z">
-<meta property="article:modified_time" content="2022-05-27T06:00:44.987Z">
+<meta property="article:modified_time" content="2022-05-27T06:06:27.253Z">
 <meta property="article:author" content="RealHMY">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://example.com/images/2022-5-26.png">
@@ -284,15 +284,15 @@
 <p>点击Thread 选项，找到高CPU的TID（PID是进程id，TID是线程id，我们需要知道TID）</p>
 <p>在计算器中，选择程序员模式，输入TID，复制HEX的值（也就是将十进制转为十六进制）</p>
 <p>在刚刚的txt文件搜索十六进制的TID</p>
-<pre><code class="hljs">&quot;pulsar-timer-28-1&quot; #50 prio=5 os_prio=0 tid=0x0000000029be0800 **nid=0x89a0** runnable [0x000000002e4ee000]    java.lang.Thread.State: RUNNABLE
+<pre><code class="hljs">&quot;XXXX-timer-28-1&quot; #50 prio=5 os_prio=0 tid=0x0000000029be0800 **nid=0x89a0** runnable [0x000000002e4ee000]    java.lang.Thread.State: RUNNABLE
 at java.lang.Thread.sleep(Native Method)
 at io.netty.util.HashedWheelTimer$Worker.waitForNextTick(HashedWheelTimer.java:567)
 at io.netty.util.HashedWheelTimer$Worker.run(HashedWheelTimer.java:466)
 at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
 at java.lang.Thread.run(Thread.java:748)
 </code></pre>
-<p>可以看到nid&#x3D;0x89a0就是高占用的地方，这个线程是pulsar-timer-28-1，它是pulsar启动的线程，pulsar依赖于netty，所以还能看到netty的类。</p>
-<p>pulsar在项目启动后一直处于运行状态，占用一个线程，而我的处理器是八核十六线程，pulsar约占10%。至此，项目启动后造成10%占用的元凶就找到了。</p>
+<p>可以看到nid&#x3D;0x89a0就是高占用的地方，这个线程是XXXX-timer-28-1，它是一个MQ（这里以XXXX表示）启动的线程，这个MQ依赖于netty，所以还能看到netty的类。</p>
+<p>MQ在项目启动后一直处于运行状态，占用一个线程，而我的处理器是八核十六线程，MQ约占10%。至此，项目启动后造成10%占用的元凶就找到了。</p>
 
               
             </div>
