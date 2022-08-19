@@ -16,21 +16,21 @@
   <meta name="author" content="RealHMY">
   <meta name="keywords" content="">
   
-    <meta name="description" content="有用户反馈，页面上的数据不显示，查看后台数据，数据正常，但页面上的数据无法正常显示。打开控制台，看到有报错信息，看代码逻辑应该是处理json时报错了，仔细查看，发现领导写出了这样的代码： 1&lt;div v-if&#x3D;&quot;data.content &amp;&amp; data.content.indexOf(&amp;#x27;[&amp;#x27;) !&#x3D;&#x3D; -1&quot;&gt;  判断json格式">
+    <meta name="description" content="起因今天切换分支解决了一个小 bug，十分轻松。提交代码后切换回主开发分支，运行项目时发现特别慢。刚开始以为是缓存的问题，于是重新运行项目，结果还是很慢。 尝试解决问题刚刚在fixbug分支运行项目时，提示缺少依赖，所以有过一次下载依赖的操作，我怀疑是依赖的问题。看了看公司上传私服的包，没看出问题，而且同事更新依赖后运行正常，所以 pass 掉依赖问题。 项目是在 Spring Boot 刚启动不">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JavaScript 判断字符串是否 JSON 格式">
-<meta property="og:url" content="http://realhmy.github.io/2022/05/24/jsIsJson/index.html">
+<meta property="og:title" content="记录一次项目启动慢的解决方法">
+<meta property="og:url" content="http://realhmy.github.io/2022/06/10/initSlow/index.html">
 <meta property="og:site_name" content="RealHMY的个人博客">
-<meta property="og:description" content="有用户反馈，页面上的数据不显示，查看后台数据，数据正常，但页面上的数据无法正常显示。打开控制台，看到有报错信息，看代码逻辑应该是处理json时报错了，仔细查看，发现领导写出了这样的代码： 1&lt;div v-if&#x3D;&quot;data.content &amp;&amp; data.content.indexOf(&amp;#x27;[&amp;#x27;) !&#x3D;&#x3D; -1&quot;&gt;  判断json格式">
+<meta property="og:description" content="起因今天切换分支解决了一个小 bug，十分轻松。提交代码后切换回主开发分支，运行项目时发现特别慢。刚开始以为是缓存的问题，于是重新运行项目，结果还是很慢。 尝试解决问题刚刚在fixbug分支运行项目时，提示缺少依赖，所以有过一次下载依赖的操作，我怀疑是依赖的问题。看了看公司上传私服的包，没看出问题，而且同事更新依赖后运行正常，所以 pass 掉依赖问题。 项目是在 Spring Boot 刚启动不">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-05-24T07:11:16.000Z">
-<meta property="article:modified_time" content="2022-05-25T07:13:09.515Z">
+<meta property="article:published_time" content="2022-06-10T07:22:37.000Z">
+<meta property="article:modified_time" content="2022-08-19T06:52:27.733Z">
 <meta property="article:author" content="RealHMY">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>JavaScript 判断字符串是否 JSON 格式 - RealHMY的个人博客</title>
+  <title>记录一次项目启动慢的解决方法 - RealHMY的个人博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -193,7 +193,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="JavaScript 判断字符串是否 JSON 格式"></span>
+            <span id="subtitle" data-typed-text="记录一次项目启动慢的解决方法"></span>
           
         </div>
 
@@ -204,8 +204,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-05-24 15:11" pubdate>
-          May 24, 2022 pm
+        <time datetime="2022-06-10 15:22" pubdate>
+          June 10, 2022 pm
         </time>
       </span>
     
@@ -216,7 +216,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          490 words
+          1.1k words
         
       </span>
     
@@ -227,7 +227,7 @@
         
         
         
-          5 mins
+          10 mins
         
       </span>
     
@@ -265,18 +265,25 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">JavaScript 判断字符串是否 JSON 格式</h1>
+            <h1 style="display: none">记录一次项目启动慢的解决方法</h1>
             
             <div class="markdown-body">
               
-              <p>有用户反馈，页面上的数据不显示，查看后台数据，数据正常，但页面上的数据无法正常显示。打开控制台，看到有报错信息，看代码逻辑应该是处理json时报错了，仔细查看，发现领导写出了这样的代码：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">&lt;div v-<span class="hljs-keyword">if</span>=<span class="hljs-string">&quot;data.content &amp;&amp; data.content.indexOf(&#x27;[&#x27;) !== -1&quot;</span>&gt;<br></code></pre></td></tr></table></figure>
+              <h2 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h2><p>今天切换分支解决了一个小 bug，十分轻松。提交代码后切换回主开发分支，运行项目时发现特别慢。刚开始以为是缓存的问题，于是重新运行项目，结果还是很慢。</p>
+<h2 id="尝试解决问题"><a href="#尝试解决问题" class="headerlink" title="尝试解决问题"></a>尝试解决问题</h2><p>刚刚在fixbug分支运行项目时，提示缺少依赖，所以有过一次下载依赖的操作，我怀疑是依赖的问题。看了看公司上传私服的包，没看出问题，而且同事更新依赖后运行正常，所以 pass 掉依赖问题。</p>
+<p>项目是在 Spring Boot 刚启动不久后卡住不动的，有可能是加载的 bean 太多，内存不够用，于是修改了 idea 的虚拟机设置，发现还是不行，甚至改了编译线程数也不行（废话，日志都出来了，编译过程早就过去了）</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-attr">-Xms1024m</span><br><span class="hljs-attr">-Xmx4096m</span><br><span class="hljs-attr">-XX</span>:<span class="hljs-string">ReservedCodeCacheSize=512m</span><br><span class="hljs-attr">-XX</span>:<span class="hljs-string">+UseConcMarkSweepGC</span><br><span class="hljs-attr">-XX</span>:<span class="hljs-string">SoftRefLRUPolicyMSPerMB=50</span><br><span class="hljs-attr">-ea</span><br><span class="hljs-attr">-XX</span>:<span class="hljs-string">CICompilerCount=4</span><br></code></pre></td></tr></table></figure>
 
-<p>判断json格式居然是根据有无方括号来判断的？？？</p>
-<p>人都麻了，这里贴一下判断字符串是否json格式的代码：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-title function_">isJSON</span>(<span class="hljs-params">str</span>) &#123;<br>    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> str == <span class="hljs-string">&#x27;string&#x27;</span>) &#123;<br>        <span class="hljs-keyword">try</span> &#123;<br>            <span class="hljs-keyword">let</span> obj = <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">parse</span>(str);<br>            <span class="hljs-keyword">return</span> !!(<span class="hljs-keyword">typeof</span> obj == <span class="hljs-string">&#x27;object&#x27;</span> &amp;&amp; obj);<br>        &#125; <span class="hljs-keyword">catch</span> (e) &#123;<br>            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(e);<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p>哪怕是领导写的代码也要谨慎使用，谨记！！！</p>
+<p>看日志，显示初始化数据后就停留了 10 分钟，会不会是数据库的问题？</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">2022-06-10 11:14:48.036  INFO 18584 --- [           main] com.alibaba.druid.pool.DruidDataSource   : &#123;dataSource-1&#125; inited<br>2022-06-10 11:14:58.419  INFO 18584 --- [           main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService<br></code></pre></td></tr></table></figure>
+
+<p>我启动的是本地项目，SQLyog访问正常，数据库配置没改动，那么也不是数据库的问题。至于下一行的初始化线程池服务，也同数据库一样，没改过。</p>
+<p>那么，在两者间到底发生了什么？</p>
+<p>改动项目的日志输出级别为 INFO，大部分的日志都能数据（涉及公司项目机构，就不贴代码了）。</p>
+<p>日志输出仍然是卡住初始数据库后，初始化线程池服务前也没有任何日志，这说明了并不是 Spring Boot 初始化的问题。那么，除去 JVM、Spring Boot 后，只剩下一个目标了：idea。于是百度搜索 idea 初始化项目慢的问题，结果让找到一个方法：先用 Maven clean 一遍，然后清掉 idea 的所有断点。照做一遍，恢复了正常速度！！！！</p>
+<p>先前有进行过 clean 操作，那么很明显就是 idea 的断点卡住了 Spring Boot 的初始化。不过很奇怪，我明明已经关闭了 Debug 模式，不知为何还会卡住，这可能是 idea 的 bug 吧。</p>
+<p>对于该功能的探索，我后来看到了一篇文章，讲的比较详细：<a target="_blank" rel="noopener" href="https://juejin.cn/post/7131956856771051557#heading-0">https://juejin.cn/post/7131956856771051557#heading-0</a></p>
 
               
             </div>
@@ -293,8 +300,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>JavaScript 判断字符串是否 JSON 格式</div>
-      <div>http://realhmy.github.io/2022/05/24/jsIsJson/</div>
+      <div>记录一次项目启动慢的解决方法</div>
+      <div>http://realhmy.github.io/2022/06/10/initSlow/</div>
     </div>
     <div class="license-meta">
       
@@ -306,7 +313,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>May 24, 2022</div>
+          <div>June 10, 2022</div>
         </div>
       
       
@@ -336,9 +343,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/05/25/jstack/" title="通过jstack找CPU高占用的线程（Windows）">
+                      <a href="/2022/08/19/lifecycle/" title="antdv的modal的延迟关闭">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">通过jstack找CPU高占用的线程（Windows）</span>
+                        <span class="hidden-mobile">antdv的modal的延迟关闭</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
@@ -346,8 +353,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/05/23/transaction/" title="PROPAGATION_NESTED 和 PROPAGATION_REQUIRES_NEW 的使用">
-                        <span class="hidden-mobile">PROPAGATION_NESTED 和 PROPAGATION_REQUIRES_NEW 的使用</span>
+                      <a href="/2022/05/25/jstack/" title="通过jstack找CPU高占用的线程（Windows）">
+                        <span class="hidden-mobile">通过jstack找CPU高占用的线程（Windows）</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

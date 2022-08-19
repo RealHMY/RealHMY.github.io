@@ -16,21 +16,23 @@
   <meta name="author" content="RealHMY">
   <meta name="keywords" content="">
   
-    <meta name="description" content="有用户反馈，页面上的数据不显示，查看后台数据，数据正常，但页面上的数据无法正常显示。打开控制台，看到有报错信息，看代码逻辑应该是处理json时报错了，仔细查看，发现领导写出了这样的代码： 1&lt;div v-if&#x3D;&quot;data.content &amp;&amp; data.content.indexOf(&amp;#x27;[&amp;#x27;) !&#x3D;&#x3D; -1&quot;&gt;  判断json格式">
+    <meta name="description" content="需求场景用户进入首页后出现信息弹窗，该弹窗告知用户某些注意事项。用户点击右上角的叉，可以关闭信息弹窗，但在关闭时会弹出一个新的确认框，可以点击“下次提醒”和“彻底关闭”。 该功能已由我上级完成，但他写的页面有个问题：在确认框出现后，信息弹窗就关闭了。 我的任务就是改造该页面，关闭上面的第一层弹窗，下面第二层弹窗才消失，大致情形如下图：  接下来为了说明清楚，我把最上面的弹窗称为上层弹窗，在下面的弹">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JavaScript 判断字符串是否 JSON 格式">
-<meta property="og:url" content="http://realhmy.github.io/2022/05/24/jsIsJson/index.html">
+<meta property="og:title" content="antdv的modal的延迟关闭">
+<meta property="og:url" content="http://realhmy.github.io/2022/08/19/lifecycle/index.html">
 <meta property="og:site_name" content="RealHMY的个人博客">
-<meta property="og:description" content="有用户反馈，页面上的数据不显示，查看后台数据，数据正常，但页面上的数据无法正常显示。打开控制台，看到有报错信息，看代码逻辑应该是处理json时报错了，仔细查看，发现领导写出了这样的代码： 1&lt;div v-if&#x3D;&quot;data.content &amp;&amp; data.content.indexOf(&amp;#x27;[&amp;#x27;) !&#x3D;&#x3D; -1&quot;&gt;  判断json格式">
+<meta property="og:description" content="需求场景用户进入首页后出现信息弹窗，该弹窗告知用户某些注意事项。用户点击右上角的叉，可以关闭信息弹窗，但在关闭时会弹出一个新的确认框，可以点击“下次提醒”和“彻底关闭”。 该功能已由我上级完成，但他写的页面有个问题：在确认框出现后，信息弹窗就关闭了。 我的任务就是改造该页面，关闭上面的第一层弹窗，下面第二层弹窗才消失，大致情形如下图：  接下来为了说明清楚，我把最上面的弹窗称为上层弹窗，在下面的弹">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-05-24T07:11:16.000Z">
-<meta property="article:modified_time" content="2022-05-25T07:13:09.515Z">
+<meta property="og:image" content="http://realhmy.github.io/images/2022-08-19-15-11-05.png">
+<meta property="article:published_time" content="2022-08-19T06:47:41.000Z">
+<meta property="article:modified_time" content="2022-08-19T09:10:31.115Z">
 <meta property="article:author" content="RealHMY">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://realhmy.github.io/images/2022-08-19-15-11-05.png">
   
   
   
-  <title>JavaScript 判断字符串是否 JSON 格式 - RealHMY的个人博客</title>
+  <title>antdv的modal的延迟关闭 - RealHMY的个人博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -193,7 +195,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="JavaScript 判断字符串是否 JSON 格式"></span>
+            <span id="subtitle" data-typed-text="antdv的modal的延迟关闭"></span>
           
         </div>
 
@@ -204,8 +206,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-05-24 15:11" pubdate>
-          May 24, 2022 pm
+        <time datetime="2022-08-19 14:47" pubdate>
+          August 19, 2022 pm
         </time>
       </span>
     
@@ -216,7 +218,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          490 words
+          1.4k words
         
       </span>
     
@@ -227,7 +229,7 @@
         
         
         
-          5 mins
+          13 mins
         
       </span>
     
@@ -265,18 +267,40 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">JavaScript 判断字符串是否 JSON 格式</h1>
+            <h1 style="display: none">antdv的modal的延迟关闭</h1>
             
             <div class="markdown-body">
               
-              <p>有用户反馈，页面上的数据不显示，查看后台数据，数据正常，但页面上的数据无法正常显示。打开控制台，看到有报错信息，看代码逻辑应该是处理json时报错了，仔细查看，发现领导写出了这样的代码：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">&lt;div v-<span class="hljs-keyword">if</span>=<span class="hljs-string">&quot;data.content &amp;&amp; data.content.indexOf(&#x27;[&#x27;) !== -1&quot;</span>&gt;<br></code></pre></td></tr></table></figure>
+              <h2 id="需求场景"><a href="#需求场景" class="headerlink" title="需求场景"></a>需求场景</h2><p>用户进入首页后出现信息弹窗，该弹窗告知用户某些注意事项。用户点击右上角的叉，可以关闭信息弹窗，但在关闭时会弹出一个新的确认框，可以点击“下次提醒”和“彻底关闭”。</p>
+<p>该功能已由我上级完成，但他写的页面有个问题：在确认框出现后，信息弹窗就关闭了。</p>
+<p>我的任务就是改造该页面，关闭上面的第一层弹窗，下面第二层弹窗才消失，大致情形如下图：</p>
+<p><img src="/images/2022-08-19-15-11-05.png" srcset="/img/loading.gif" lazyload></p>
+<p>接下来为了说明清楚，我把最上面的弹窗称为上层弹窗，在下面的弹窗称为下层弹窗。</p>
+<h2 id="难点"><a href="#难点" class="headerlink" title="难点"></a>难点</h2><p>先看原来的代码：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">a-modal</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">&quot;isShow&quot;</span> <span class="hljs-attr">...</span> @<span class="hljs-attr">cancel</span>=<span class="hljs-string">&quot;onCancel&quot;</span>&gt;</span><br>    ...<br><span class="hljs-tag">&lt;/<span class="hljs-name">a-modal</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
-<p>判断json格式居然是根据有无方括号来判断的？？？</p>
-<p>人都麻了，这里贴一下判断字符串是否json格式的代码：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-title function_">isJSON</span>(<span class="hljs-params">str</span>) &#123;<br>    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> str == <span class="hljs-string">&#x27;string&#x27;</span>) &#123;<br>        <span class="hljs-keyword">try</span> &#123;<br>            <span class="hljs-keyword">let</span> obj = <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">parse</span>(str);<br>            <span class="hljs-keyword">return</span> !!(<span class="hljs-keyword">typeof</span> obj == <span class="hljs-string">&#x27;object&#x27;</span> &amp;&amp; obj);<br>        &#125; <span class="hljs-keyword">catch</span> (e) &#123;<br>            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(e);<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-title function_">onCancel</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-title function_">openConfrimModal</span>(<span class="hljs-params"></span>) &#123;<br>        <span class="hljs-title function_">http</span>(<span class="hljs-params"></span>) &#123;<br>            <span class="hljs-comment">// 将确认关闭或下次提醒提交给服务器</span><br>            ....<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p>哪怕是领导写的代码也要谨慎使用，谨记！！！</p>
+<p>antdv 的 modal 组件有三个回调：</p>
+<ul>
+<li>afterClose：Modal 完全关闭后的回调</li>
+<li>cancel：点击遮罩层或右上角叉或取消按钮的回调</li>
+<li>ok：点击确定回调</li>
+</ul>
+<p>这里使用的就是 cancel 回调，经查看源码后，发现它是一个普通的 button，它将 cancel 绑定的回调方法重新绑定到 button 的 click 上，这意味着：当你点击下层弹窗右上角的叉后，会先执行 cancel 的回调方法，异步打开上层弹窗，接着修改下层弹窗绑定的 isShow 变量并关闭下层弹窗。</p>
+<p>大致分为三个阶段：点击关闭按钮 - 异步打开上层弹窗 - 关闭下层弹窗</p>
+<p>这里的难点就是，在回调方法中，即便将 isShow 置为 true，也会在第三阶段被置为 false 并关闭下层弹窗。</p>
+<h2 id="进入误区"><a href="#进入误区" class="headerlink" title="进入误区"></a>进入误区</h2><p>刚开始我想着打开上传弹窗和请求都是是异步的，那我将异步操作改为同步操作，用 async 和 await 来处理，在发出请求后进行关闭操作。</p>
+<p>但这里我进入了误区：先不说我能否将打开弹窗和请求操作改为同步操作，在回调方法里进行操作本身就是一个问题，在第一阶段的它能影响第三阶段吗？</p>
+<p>答案是：能的，而且上面的异步处理无关。</p>
+<h2 id="献上奇招"><a href="#献上奇招" class="headerlink" title="献上奇招"></a>献上奇招</h2><p>首先要知道一个知识点：vue 有一棵虚拟 dom 树，vue 处理完数据后，会更新虚拟 dom，最后才渲染成真实的页面。</p>
+<p>我的目的是让下层弹窗维持显示的状态，如果我在回调方法里将 isShow 置为 true，那没啥用，到了第三阶段 antdv 还是会将 isShow 置为 false，从而关闭弹窗。</p>
+<p>那么也就是说，antdv 会在第三阶段将 isShow 置为 false，然后 vue 更新数据到虚拟 dom 上，最后才渲染页面。如果我在更新 dom 阶段将 isShow 置为 true，最后渲染页面就能成功保留下层弹窗，不让它关闭。</p>
+<p>在更新阶段进行操作，也就可以使用 $nextTick 方法来完成。</p>
+<p>因此将代码改成这样：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-title function_">onCancel</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-variable language_">this</span>.$nextTick(<span class="hljs-function"><span class="hljs-params">_</span> =&gt;</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">isShow</span> = <span class="hljs-literal">true</span>);<br>    <span class="hljs-title function_">openConfrimModal</span>(<span class="hljs-params"></span>) &#123;<br>        <span class="hljs-title function_">http</span>(<span class="hljs-params"></span>) &#123;<br>            <span class="hljs-comment">// 将确认关闭或下次提醒提交给服务器</span><br>            ....<br>        &#125;<br>        <span class="hljs-comment">// 上层弹窗确认后关闭下层弹窗</span><br>        <span class="hljs-variable language_">this</span>.$nextTick(<span class="hljs-function"><span class="hljs-params">_</span> =&gt;</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">isShow</span> = <span class="hljs-literal">false</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>另外，$nextTick 让点击前后的 isShow 保持了 true 的值，而且是在渲染页面前完成的，所以这种骚操作不会刷新下层弹窗，也不会导致页面闪烁，完美地解决了问题。</p>
 
               
             </div>
@@ -293,8 +317,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>JavaScript 判断字符串是否 JSON 格式</div>
-      <div>http://realhmy.github.io/2022/05/24/jsIsJson/</div>
+      <div>antdv的modal的延迟关闭</div>
+      <div>http://realhmy.github.io/2022/08/19/lifecycle/</div>
     </div>
     <div class="license-meta">
       
@@ -306,7 +330,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>May 24, 2022</div>
+          <div>August 19, 2022</div>
         </div>
       
       
@@ -336,18 +360,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/05/25/jstack/" title="通过jstack找CPU高占用的线程（Windows）">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">通过jstack找CPU高占用的线程（Windows）</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/05/23/transaction/" title="PROPAGATION_NESTED 和 PROPAGATION_REQUIRES_NEW 的使用">
-                        <span class="hidden-mobile">PROPAGATION_NESTED 和 PROPAGATION_REQUIRES_NEW 的使用</span>
+                      <a href="/2022/06/10/initSlow/" title="记录一次项目启动慢的解决方法">
+                        <span class="hidden-mobile">记录一次项目启动慢的解决方法</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

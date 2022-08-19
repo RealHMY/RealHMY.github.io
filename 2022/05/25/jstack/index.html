@@ -19,16 +19,16 @@
     <meta name="description" content="之前有一天开会，开了两小时，发现满电的笔记本剩下的电量不多，觉得有些不对劲，哪怕电池老化，耗电也不至于那么多。 快下班时，本地重启项目后发现JVM有10%的占用，按道理说不应该有超过2%的占用，因为项目里并没有高占用的代码在运行。 于是查找教程，看看Windows下怎么查找高占用的代码。 不同于Linux，Windows的任务管理器不能查看线程的状态，只能看进程，所以要先下载能查看线程状态的工具P">
 <meta property="og:type" content="article">
 <meta property="og:title" content="通过jstack找CPU高占用的线程（Windows）">
-<meta property="og:url" content="http://example.com/2022/05/25/jstack/index.html">
+<meta property="og:url" content="http://realhmy.github.io/2022/05/25/jstack/index.html">
 <meta property="og:site_name" content="RealHMY的个人博客">
 <meta property="og:description" content="之前有一天开会，开了两小时，发现满电的笔记本剩下的电量不多，觉得有些不对劲，哪怕电池老化，耗电也不至于那么多。 快下班时，本地重启项目后发现JVM有10%的占用，按道理说不应该有超过2%的占用，因为项目里并没有高占用的代码在运行。 于是查找教程，看看Windows下怎么查找高占用的代码。 不同于Linux，Windows的任务管理器不能查看线程的状态，只能看进程，所以要先下载能查看线程状态的工具P">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/images/2022-5-26.png">
+<meta property="og:image" content="http://realhmy.github.io/images/2022-5-26.png">
 <meta property="article:published_time" content="2022-05-25T08:27:27.000Z">
 <meta property="article:modified_time" content="2022-05-27T06:06:27.253Z">
 <meta property="article:author" content="RealHMY">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/images/2022-5-26.png">
+<meta name="twitter:image" content="http://realhmy.github.io/images/2022-5-26.png">
   
   
   
@@ -70,7 +70,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.0","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"realhmy.github.io","root":"/","version":"1.9.0","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -310,7 +310,7 @@ at java.lang.Thread.run(Thread.java:748)
   <div class="license-box my-3">
     <div class="license-title">
       <div>通过jstack找CPU高占用的线程（Windows）</div>
-      <div>http://example.com/2022/05/25/jstack/</div>
+      <div>http://realhmy.github.io/2022/05/25/jstack/</div>
     </div>
     <div class="license-meta">
       
@@ -351,6 +351,12 @@ at java.lang.Thread.run(Thread.java:748)
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2022/06/10/initSlow/" title="记录一次项目启动慢的解决方法">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">记录一次项目启动慢的解决方法</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
